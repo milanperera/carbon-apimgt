@@ -20,6 +20,7 @@ package org.wso2.carbon.apimgt.keymgt;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.wso2.carbon.apimgt.keymgt.issuers.AbstractScopesIssuer;
 import org.wso2.carbon.apimgt.keymgt.util.APIKeyMgtDataHolder;
 import org.wso2.carbon.identity.oauth2.token.OAuthTokenReqMessageContext;
 
@@ -33,7 +34,7 @@ public class ScopesIssuer {
 
     private static Log log = LogFactory.getLog(ScopesIssuer.class);
     private List<String> scopeSkipList = new ArrayList<String>();
-    private static Map<String, org.wso2.carbon.apimgt.keymgt.issuers.ScopesIssuer> scopesIssuers;
+    private static Map<String, AbstractScopesIssuer> scopesIssuers;
     private static final String DEFAULT_SCOPE_NAME = "default";
     /**
      * Singleton of ScopeIssuer.*

@@ -30,6 +30,7 @@ import org.osgi.service.component.ComponentContext;
 import org.wso2.carbon.apimgt.impl.APIConstants;
 import org.wso2.carbon.apimgt.impl.generated.thrift.APIKeyMgtException;
 import org.wso2.carbon.apimgt.impl.utils.APIUtil;
+import org.wso2.carbon.apimgt.keymgt.issuers.AbstractScopesIssuer;
 import org.wso2.carbon.apimgt.keymgt.issuers.PermissionBasedScopeIssuer;
 import org.wso2.carbon.apimgt.keymgt.issuers.RoleBasedScopesIssuer;
 import org.wso2.carbon.apimgt.keymgt.ScopesIssuer;
@@ -68,7 +69,7 @@ import java.util.concurrent.Executors;
  * interface="org.wso2.carbon.identity.thrift.authentication.ThriftAuthenticatorService"
  * cardinality="1..1" policy="dynamic" bind="setThriftAuthenticationService"  unbind="unsetThriftAuthenticationService"
  * @scr.reference name="scope.issuer.service"
- * interface="org.wso2.carbon.apimgt.keymgt.issuers.ScopesIssuer"
+ * interface="org.wso2.carbon.apimgt.keymgt.issuers.AbstractScopesIssuer"
  * cardinality="0..n"
  * policy="dynamic"
  * bind="addScopeIssuer"
@@ -229,7 +230,7 @@ public class APIKeyMgtServiceComponent {
      * Add scope issuer to the map.
      * @param scopesIssuer scope issuer.
      */
-    protected void addScopeIssuer(org.wso2.carbon.apimgt.keymgt.issuers.ScopesIssuer scopesIssuer) {
+    protected void addScopeIssuer(AbstractScopesIssuer scopesIssuer) {
         APIKeyMgtDataHolder.addScopesIssuer(scopesIssuer.getPrefix(), scopesIssuer);
     }
 
@@ -237,7 +238,7 @@ public class APIKeyMgtServiceComponent {
      * unset scope issuer.
      * @param scopesIssuer
      */
-    protected void removeScopeIssuers(org.wso2.carbon.apimgt.keymgt.issuers.ScopesIssuer scopesIssuer) {
+    protected void removeScopeIssuers(AbstractScopesIssuer scopesIssuer) {
         APIKeyMgtDataHolder.setScopesIssuers(null);
     }
 
